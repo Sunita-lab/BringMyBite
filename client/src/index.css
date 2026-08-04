@@ -1,1 +1,37 @@
 @import "tailwindcss";
+
+@theme {
+  /* Primary - Bite Orange */
+  --color-bite-orange: #F97316;
+  
+  /* Secondary - Fresh Green */
+  --color-fresh-green: #65A30D;
+  
+  /* Accent - Honey Gold */
+  --color-honey-gold: #FBBF24;
+  
+  /* Danger - Tomato */
+  --color-tomato: #EF4444;
+  
+  /* Info - Sky */
+  --color-sky: #0EA5E9;
+  
+  /* Neutrals */
+  --color-bg-cream: #FFFBF7;
+  --color-card-white: #FFFFFF;
+  --color-border-gray: #E5E7EB;
+  --color-text-primary: #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-disabled: #9CA3AF;
+
+  /* Fonts */
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-price: "Space Grotesk", sans-serif;
+
+  /* Border Radius */
+  --radius-button: 18px;
+  --radius-card: 24px;
+  --radius-search: 999px;
+  --radius-image: 22px;
+}
