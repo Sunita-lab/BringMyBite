@@ -4,6 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
+import FoodDetail from "./pages/FoodDetail";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/food/:id" element={
+  <ProtectedRoute>
+    <FoodDetail />
+  </ProtectedRoute>
+} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

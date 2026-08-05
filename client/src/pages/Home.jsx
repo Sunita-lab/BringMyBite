@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import API from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 // Time ke hisaab se greeting
 const getGreeting = () => {
@@ -191,8 +192,10 @@ export default function Home() {
 
 // Food Card Component
 function FoodCard({ food }) {
+    const navigate = useNavigate();
   return (
     <div
+      onClick={() => navigate(`/food/${food._id}`)}
       className="flex-shrink-0 w-48 rounded-[24px] bg-white overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-200"
       style={{ boxShadow: "0 12px 30px rgba(0,0,0,0.08)" }}
     >
