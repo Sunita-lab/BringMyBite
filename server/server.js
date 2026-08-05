@@ -16,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/foods', require('./routes/food'));
 app.use('/api/categories', require('./routes/category'));
+app.use('/api/admin', require('./routes/admin'));
 
 // Test route
 app.get('/', (req, res) => {
