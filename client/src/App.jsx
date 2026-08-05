@@ -3,6 +3,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -16,11 +17,7 @@ function App() {
             path="/home"
             element={
               <ProtectedRoute>
-                <div className="min-h-screen bg-bg-cream flex items-center justify-center">
-                  <h1 className="font-heading text-2xl font-bold text-bite-orange">
-                    Welcome to BringMyBite! 🍊
-                  </h1>
-                </div>
+                <Home />
               </ProtectedRoute>
             }
           />
