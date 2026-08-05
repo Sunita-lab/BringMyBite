@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
@@ -7,6 +8,7 @@ export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +20,7 @@ export default function Login() {
     setError("");
     try {
       const { data } = await API.post("/auth/login", formData);
-      localStorage.setItem("bringmybite_user", JSON.stringify(data));
+      login(data);
       navigate("/home");
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
