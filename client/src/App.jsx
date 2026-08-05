@@ -1,16 +1,18 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
 function App() {
   return (
-    <div className="min-h-screen bg-bg-cream flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="font-heading text-4xl font-bold text-bite-orange mb-2">
-          BringMyBite 🍊
-        </h1>
-        <p className="font-body text-text-secondary">
-          Every craving deserves the perfect bite.
-        </p>
-      </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        {/* Baad mein aur routes add honge */}
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
