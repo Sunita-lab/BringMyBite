@@ -12,6 +12,7 @@ import { CartProvider } from "./context/CartContext";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./pages/Orders";
 
 
 function App() {
@@ -65,6 +66,12 @@ function App() {
 <Route path="/order-success/:id" element={
   <ProtectedRoute>
     <OrderSuccess />
+  </ProtectedRoute>
+} />
+
+<Route path="/orders" element={
+  <ProtectedRoute>
+    <Orders />
   </ProtectedRoute>
 } />
         </Routes>
