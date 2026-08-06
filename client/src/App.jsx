@@ -10,6 +10,7 @@ import AddFood from "./pages/Admin/AddFood";
 import AddCategory from "./pages/Admin/AddCategory";
 import { CartProvider } from "./context/CartContext";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 
 function App() {
@@ -52,6 +53,18 @@ function App() {
 <Route path="/cart" element={
   <ProtectedRoute>
     <Cart />
+  </ProtectedRoute>
+} />
+<Route path="/checkout" element={
+  <ProtectedRoute>
+    <Checkout />
+  </ProtectedRoute>
+} />
+<Route path="/order-success/:id" element={
+  <ProtectedRoute>
+    <div className="min-h-screen bg-bg-cream flex items-center justify-center">
+      <h1 className="font-heading text-2xl text-bite-orange">Order Success page coming soon! 🍊</h1>
+    </div>
   </ProtectedRoute>
 } />
         </Routes>
