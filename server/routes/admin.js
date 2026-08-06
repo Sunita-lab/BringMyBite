@@ -6,6 +6,11 @@ const {
   createFood, updateFood, deleteFood,
   getAllUsers
 } = require('../controllers/adminController');
+const { 
+  createCategory, updateCategory, deleteCategory,
+  createFood, updateFood, deleteFood,
+  getAllUsers, getAllOrders, updateOrderStatus
+} = require('../controllers/adminController');
 
 // Sab routes protected + admin only
 router.use(protect, adminOnly);
@@ -22,5 +27,9 @@ router.delete('/foods/:id', deleteFood);
 
 // Users
 router.get('/users', getAllUsers);
+
+// Orders
+router.get('/orders', getAllOrders);
+router.put('/orders/:id/status', updateOrderStatus);
 
 module.exports = router;

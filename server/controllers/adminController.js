@@ -1,6 +1,7 @@
 const Food = require('../models/Food');
 const Category = require('../models/Category');
 const User = require('../models/User');
+const Order = require('../models/Order');
 
 // ─── CATEGORY ───────────────────────────────
 
@@ -81,8 +82,34 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+// GET all orders
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find()
+      .populate('user', 'name email phone')
+      .sort({ createdAt: -1 });
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// UPDATE order status
+const updateOrderStatus = async (req, res) => {
+  try {
+    const order = await Order.findByIdAndUpdate(
+      req.params.id,
+      { status: req.body.status },
+      { new: true }
+    );
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createCategory, updateCategory, deleteCategory,
   createFood, updateFood, deleteFood,
-  getAllUsers
+  getAllUsers, getAllOrders, updateOrderStatus
 };
