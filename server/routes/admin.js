@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { protect, adminOnly } = require('../middleware/auth');
-const {
-  createCategory, updateCategory, deleteCategory,
-  createFood, updateFood, deleteFood,
-  getAllUsers
-} = require('../controllers/adminController');
+
 const { 
   createCategory, updateCategory, deleteCategory,
   createFood, updateFood, deleteFood,
