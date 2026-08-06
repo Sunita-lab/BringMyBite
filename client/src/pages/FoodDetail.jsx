@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../api/axios";
+import { useCart } from "../context/CartContext";
 
 export default function FoodDetail() {
   const { id } = useParams();
@@ -8,6 +9,7 @@ export default function FoodDetail() {
   const [food, setFood] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchFood = async () => {
@@ -247,6 +249,10 @@ export default function FoodDetail() {
             </div>
 
             <button
+            onClick={() => {
+            addToCart(food, quantity);
+            navigate("/cart");
+            }}
               className="px-6 py-3 rounded-[18px] bg-bite-orange text-white font-heading font-semibold hover:scale-[1.03] hover:shadow-lg transition-all duration-200"
             >
               Add to Bite 🛒

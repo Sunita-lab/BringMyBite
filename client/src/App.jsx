@@ -8,10 +8,14 @@ import FoodDetail from "./pages/FoodDetail";
 import AdminPanel from "./pages/Admin/index";
 import AddFood from "./pages/Admin/AddFood";
 import AddCategory from "./pages/Admin/AddCategory";
+import { CartProvider } from "./context/CartContext";
+import Cart from "./pages/Cart";
+
 
 function App() {
   return (
     <AuthProvider>
+      <CartProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
@@ -45,8 +49,14 @@ function App() {
     <AddCategory />
   </ProtectedRoute>
 } />
+<Route path="/cart" element={
+  <ProtectedRoute>
+    <Cart />
+  </ProtectedRoute>
+} />
         </Routes>
       </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 }

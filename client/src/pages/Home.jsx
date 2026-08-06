@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 // Time ke hisaab se greeting
 const getGreeting = () => {
@@ -18,6 +19,8 @@ export default function Home() {
   const [healthy, setHealthy] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const { cartCount } = useCart();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,12 +72,25 @@ export default function Home() {
               {user?.name?.split(" ")[0]}
             </h1>
           </div>
-          <button
-            onClick={logout}
-            className="text-white/80 font-body text-sm border border-white/30 rounded-full px-4 py-1.5 hover:bg-white/20 transition-all"
-          >
-            Logout
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate("/cart")}
+              className="relative w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-all"
+            >
+              🛒
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-tomato text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={logout}
+              className="text-white/80 font-body text-sm border border-white/30 rounded-full px-4 py-1.5 hover:bg-white/20 transition-all"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         <p className="font-body text-white/90 text-sm mb-4">
@@ -190,9 +206,10 @@ export default function Home() {
   );
 }
 
+
 // Food Card Component
 function FoodCard({ food }) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div
       onClick={() => navigate(`/food/${food._id}`)}
