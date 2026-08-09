@@ -35,7 +35,7 @@ export default function Landing() {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen overflow-x-hidden"
       style={{
         background:
           "radial-gradient(circle at center, #FFF8EF 0%, #F9F2E8 55%, #F2E4D3 100%)",
@@ -81,7 +81,7 @@ export default function Landing() {
       </nav>
 
       {/* Hero */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-16 grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-6 grid md:grid-cols-2 gap-10 items-center">
 
         {/* Left */}
         <div>
@@ -143,17 +143,151 @@ export default function Landing() {
         </div>
 
         {/* Right — Hero Image */}
-<div className="relative flex items-center justify-center -ml-8 md:-ml-14">
-  <img
-    src="/hero-bag.png"
-    alt="BringMyBite — packed with care, delivered with love"
-    className="w-full h-auto scale-125 md:scale-130"
-    style={{
-      maskImage: "radial-gradient(circle at center, black 55%, transparent 85%)",
-      WebkitMaskImage: "radial-gradient(circle at center, black 55%, transparent 85%)",
-    }}
-  />
-</div>
+        <div className="relative flex items-center justify-center -ml-6 md:-ml-12">
+          <img
+            src="/hero-bag.png"
+            alt="BringMyBite — packed with care, delivered with love"
+            className="w-full h-auto scale-125 md:scale-150"
+            style={{
+              maskImage: "radial-gradient(circle at center, black 55%, transparent 85%)",
+              WebkitMaskImage: "radial-gradient(circle at center, black 55%, transparent 85%)",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Mood Selector + BiteMatch AI */}
+      <div className="max-w-7xl mx-auto px-3 md:px-6 pb-20">
+        <div
+          className="rounded-[32px] p-6 md:p-10"
+          style={{ background: "#FFFBF3" }}
+        >
+          {/* Mood Row */}
+          <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
+            <h2 className="font-heading text-2xl font-bold text-text-primary flex-shrink-0">
+              Every mood
+              <br />
+              deserves a <span className="text-bite-orange italic">bite.</span>
+            </h2>
+
+            <div className="flex flex-wrap gap-3">
+              {[
+                { label: "Happy", emoji: "🙂" },
+                { label: "Tired", emoji: "😴" },
+                { label: "Gym Mode", emoji: "🏋️" },
+                { label: "Date Night", emoji: "❤️" },
+                { label: "Rainy Day", emoji: "🌧️" },
+                { label: "Sick Day", emoji: "🤒" },
+              ].map((mood) => (
+                <button
+                  key={mood.label}
+                  onClick={() => navigate("/signup")}
+                  className="flex flex-col items-center gap-1.5 px-4 py-3 rounded-[18px] bg-white border border-border-gray hover:border-bite-orange transition-all min-w-[80px]"
+                >
+                  <span className="text-xl">{mood.emoji}</span>
+                  <span className="font-body text-xs text-text-primary">
+                    {mood.label}
+                  </span>
+                </button>
+              ))}
+
+              <button
+                onClick={() => navigate("/signup")}
+                className="flex flex-col items-center justify-center gap-1.5 px-4 py-3 rounded-[18px] text-white hover:scale-[1.03] transition-all min-w-[80px]"
+                style={{ background: "#1F2417" }}
+              >
+                <span className="text-xl">✨</span>
+                <span className="font-body text-xs text-center leading-tight">
+                  Surprise Me
+                  <br />
+                  Use BiteMatch AI
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* BiteMatch AI Dark Card */}
+          <div
+            className="rounded-[28px] p-6 md:p-8"
+            style={{ background: "#1F2417" }}
+          >
+            <div className="grid md:grid-cols-[1fr_1.4fr] gap-8 items-center">
+
+              {/* Left — Chat Preview */}
+              <div>
+                <p className="font-body text-xs text-honey-gold mb-2">
+                  BiteMatch AI ✨
+                </p>
+                <h3 className="font-heading text-2xl font-bold text-white mb-1">
+                  Describe your <span className="text-bite-orange italic">craving.</span>
+                </h3>
+                <p className="font-heading text-2xl font-bold text-white mb-5">
+                  We'll do the rest.
+                </p>
+
+                {/* Chat bubbles */}
+                <div className="space-y-2 mb-5">
+                  <div className="bg-white/10 rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%]">
+                    <p className="font-body text-xs text-white/90">
+                      I want something spicy, high protein under ₹250
+                    </p>
+                    <p className="font-body text-[10px] text-white/40 mt-1">
+                      12:30 PM
+                    </p>
+                  </div>
+                  <div className="bg-bite-orange/20 rounded-2xl rounded-tl-sm px-4 py-2.5 max-w-[85%]">
+                    <p className="font-body text-xs text-white/90">
+                      Done! Here are top matches for you 🔥
+                    </p>
+                    <p className="font-body text-[10px] text-white/40 mt-1">
+                      12:30 PM
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => navigate("/signup")}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white font-body text-sm font-semibold text-text-primary hover:scale-[1.03] transition-all"
+                >
+                  Try BiteMatch AI
+                  <span>→</span>
+                </button>
+              </div>
+
+              {/* Right — Match Cards */}
+              <div className="flex gap-3 overflow-x-auto pb-1">
+                {[
+                  { name: "Spicy Chicken Bowl", price: 199, match: 98, time: "20 mins", tag: "High Protein" },
+                  { name: "Paneer Tikka Wrap", price: 179, match: 96, time: "18 mins", tag: "Spicy" },
+                  { name: "Schezwan Noodles", price: 149, match: 94, time: "22 mins", tag: "Spicy" },
+                ].map((item) => (
+                  <div
+                    key={item.name}
+                    className="flex-shrink-0 w-36 bg-white rounded-[18px] overflow-hidden"
+                  >
+                    <div className="h-24 bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center relative">
+                      <span className="text-3xl">🍽️</span>
+                      <span className="absolute top-2 left-2 bg-white/90 rounded-full px-2 py-0.5 text-[9px] font-body text-text-primary">
+                        Match: {item.match}%
+                      </span>
+                    </div>
+                    <div className="p-2.5">
+                      <p className="font-heading text-xs font-bold text-text-primary truncate">
+                        {item.name}
+                      </p>
+                      <p className="font-body text-[10px] text-text-secondary mt-0.5">
+                        {item.time} • {item.tag}
+                      </p>
+                      <p className="font-price text-xs font-bold text-bite-orange mt-1">
+                        ₹{item.price}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
