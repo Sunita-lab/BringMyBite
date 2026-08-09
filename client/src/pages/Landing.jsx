@@ -157,7 +157,7 @@ export default function Landing() {
       </div>
 
       {/* Mood Selector + BiteMatch AI */}
-      <div className="max-w-7xl mx-auto px-3 md:px-6 pb-20">
+      <div className="max-w-7xl mx-auto px-3 md:px-6 pb-10">
         <div
           className="rounded-[32px] p-6 md:p-10"
           style={{ background: "#FFFBF3" }}
@@ -286,6 +286,67 @@ export default function Landing() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Bar */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-3">
+        <div
+          className="rounded-[28px] px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6"
+          style={{ background: "#FFFBF3" }}
+        >
+          {[
+            { emoji: "😋", value: "10M+", label: "Perfect Bites" },
+            { emoji: "🏪", value: "5000+", label: "Bite Partners" },
+            { emoji: "🎯", value: "98%", label: "Cravings Matched" },
+            { emoji: "❤️", value: "4.9★", label: "Love from Bite Lovers" },
+          ].map((stat) => (
+            <div key={stat.label} className="flex items-center gap-3">
+              <span className="text-2xl">{stat.emoji}</span>
+              <div>
+                <p className="font-heading text-xl font-bold text-text-primary">
+                  {stat.value}
+                </p>
+                <p className="font-body text-xs text-text-secondary leading-tight">
+                  {stat.label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Why Every Bite Matters */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-8">
+        <div
+          className="rounded-[28px] p-6 md:p-10"
+          style={{ background: "#FFFBF3" }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-text-primary mb-6 text-center">
+            Why every bite
+            <br />
+            <span className="text-bite-orange italic">matters.</span>
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {[
+              { icon: "🎯", title: "Handpicked Bites", desc: "Only the best make the cut." },
+              { icon: "⚡", title: "Lightning Delivery", desc: "Fast, hot and right on time." },
+              { icon: "✨", title: "Matched By AI", desc: "Smart matches you'll love." },
+              { icon: "👨‍🍳", title: "Freshly Prepared", desc: "Made with real ingredients." },
+              { icon: "🤗", title: "Loved by Real People", desc: "Because you matter." },
+            ].map((item) => (
+              <div key={item.title}>
+                <span className="text-2xl mb-2 block">{item.icon}</span>
+                <h3 className="font-heading text-sm font-bold text-text-primary mb-1">
+                  {item.title}
+                </h3>
+                <p className="font-body text-xs text-text-secondary leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
