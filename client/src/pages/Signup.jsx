@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 
 export default function Signup() {
@@ -7,6 +8,7 @@ export default function Signup() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "", phone: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +20,7 @@ export default function Signup() {
     setError("");
     try {
       const { data } = await API.post("/auth/register", formData);
-      localStorage.setItem("bringmybite_user", JSON.stringify(data));
+      login(data);
       navigate("/home");
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
@@ -28,19 +30,33 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4"
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #F97316 0%, #FDBA74 50%, #FFFBF7 100%)"
-      }}>
+        background:
+          "radial-gradient(circle at 20% 20%, #FDBA74 0%, transparent 45%), radial-gradient(circle at 80% 80%, #FB923C 0%, transparent 45%), #F9F2E8",
+      }}
+    >
+      {/* Decorative blur shapes */}
+      <div
+        className="absolute w-72 h-72 rounded-full opacity-30 blur-3xl pointer-events-none"
+        style={{ background: "#F97316", top: "-60px", left: "-60px" }}
+      />
+      <div
+        className="absolute w-72 h-72 rounded-full opacity-20 blur-3xl pointer-events-none"
+        style={{ background: "#65A30D", bottom: "-60px", right: "-60px" }}
+      />
 
       {/* Glass Card */}
-      <div className="w-full max-w-md rounded-[24px] p-8"
+      <div
+        className="relative w-full max-w-md rounded-[24px] p-8"
         style={{
-          background: "rgba(255,255,255,0.75)",
-          backdropFilter: "blur(20px)",
-          boxShadow: "0 12px 30px rgba(0,0,0,0.08)"
-        }}>
-
+          background: "rgba(255,255,255,0.7)",
+          backdropFilter: "blur(24px)",
+          border: "1px solid rgba(255,255,255,0.5)",
+          boxShadow: "0 20px 50px rgba(249,115,22,0.12)",
+        }}
+      >
         {/* Mascot */}
         <div className="text-center mb-6">
           <div className="text-6xl mb-3">🍊</div>
