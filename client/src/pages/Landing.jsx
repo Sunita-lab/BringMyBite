@@ -32,6 +32,7 @@ export default function Landing() {
 
   const popularChips = ["Pizza", "Burgers", "Healthy", "Biryani", "Desserts"];
   const navLinks = ["Our Story", "BiteMatch AI", "Bite Partners", "BiteCoins", "Offers"];
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div
@@ -72,13 +73,32 @@ export default function Landing() {
             <span>→</span>
           </button>
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden w-10 h-10 rounded-full border border-border-gray flex items-center justify-center hover:bg-white transition-all"
           >
-            <span className="text-text-primary">☰</span>
+            <span className="text-text-primary">{menuOpen ? "✕" : "☰"}</span>
           </button>
         </div>
       </nav>
+      {/* Mobile Menu */}
+{menuOpen && (
+  <div className="md:hidden px-6 pb-5 -mt-2">
+    <div className="bg-white rounded-[20px] p-5 flex flex-col gap-4" style={{ boxShadow: "0 8px 25px rgba(0,0,0,0.08)" }}>
+      {navLinks.map((link) => (
+        <a key={link} href="#" className="font-body text-sm text-text-primary">
+          {link}
+        </a>
+      ))}
+      <button
+        onClick={() => navigate("/signup")}
+        className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-body text-sm font-semibold text-white"
+        style={{ background: "#1F2417" }}
+      >
+        Grab My Bite <span>→</span>
+      </button>
+    </div>
+  </div>
+)}
 
       {/* Hero */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-6 grid md:grid-cols-2 gap-10 items-center">
@@ -211,7 +231,7 @@ export default function Landing() {
             className="rounded-[28px] p-6 md:p-8"
             style={{ background: "#1F2417" }}
           >
-            <div className="grid md:grid-cols-[1fr_1.4fr] gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 items-center">
 
               {/* Left — Chat Preview */}
               <div>
@@ -255,7 +275,7 @@ export default function Landing() {
               </div>
 
               {/* Right — Match Cards */}
-              <div className="flex gap-3 overflow-x-auto pb-1">
+              <div className="flex gap-2.5 md:gap-3 overflow-x-auto pb-1 -mx-1 px-1">
                 {[
                   { name: "Spicy Chicken Bowl", price: 199, match: 98, time: "20 mins", tag: "High Protein" },
                   { name: "Paneer Tikka Wrap", price: 179, match: 96, time: "18 mins", tag: "Spicy" },
@@ -263,7 +283,7 @@ export default function Landing() {
                 ].map((item) => (
                   <div
                     key={item.name}
-                    className="flex-shrink-0 w-36 bg-white rounded-[18px] overflow-hidden"
+                    className="flex-shrink-0 w-32 md:w-36 bg-white rounded-[18px] overflow-hidden"
                   >
                     <div className="h-24 bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center relative">
                       <span className="text-3xl">🍽️</span>
