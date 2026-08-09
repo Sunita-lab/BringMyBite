@@ -350,6 +350,135 @@ export default function Landing() {
           </div>
         </div>
       </div>
+
+      {/* Chef Spotlight */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-8">
+        <div
+          className="rounded-[28px] p-6 md:p-10 grid md:grid-cols-[1fr_1.3fr_1fr] gap-8 items-center"
+          style={{ background: "#FFFBF3" }}
+        >
+          {/* Left Text */}
+          <div>
+            <h2 className="font-heading text-2xl font-bold text-text-primary mb-3">
+              Behind every bite
+              <br />
+              is someone who <span className="text-bite-orange italic">cares.</span>
+            </h2>
+            <p className="font-body text-sm text-text-secondary mb-5">
+              From passionate chefs to home kitchens, real people craft every
+              bite with love.
+            </p>
+            <button
+              onClick={() => navigate("/signup")}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-body text-sm font-semibold hover:scale-[1.03] transition-all"
+              style={{ background: "#1F2417" }}
+            >
+              Meet Our Chefs
+              <span>→</span>
+            </button>
+          </div>
+
+          {/* Middle — Chef Card */}
+          <div className="relative">
+            {/* TODO: replace with <img src="/chef-photo.jpg" className="w-full h-56 object-cover rounded-[24px]" /> */}
+            <div className="w-full h-56 rounded-[24px] bg-gradient-to-br from-orange-100 to-orange-50 flex items-center justify-center overflow-hidden">
+              <span className="text-6xl">👨‍🍳</span>
+            </div>
+            <div
+              className="absolute -bottom-4 -right-3 bg-white rounded-[18px] p-3 max-w-[180px]"
+              style={{ boxShadow: "0 8px 25px rgba(0,0,0,0.1)" }}
+            >
+              <p className="font-body text-xs text-text-primary italic mb-1">
+                "Every bowl I make is someone's favorite bite."
+              </p>
+              <p className="font-heading text-xs font-bold text-bite-orange">
+                Chef Arjun
+              </p>
+              <p className="font-body text-[10px] text-text-secondary">
+                Cooking since 2011
+              </p>
+            </div>
+          </div>
+
+          {/* Right Stats */}
+          <div className="space-y-4 pt-4 md:pt-0">
+            {[
+              { icon: "👨‍🍳", value: "5000+", label: "Chefs & Home Kitchens" },
+              { icon: "📍", value: "50+", label: "Cities" },
+              { icon: "❤️", value: "∞", label: "Love & Care" },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-3">
+                <span className="text-xl">{stat.icon}</span>
+                <div>
+                  <p className="font-heading text-base font-bold text-text-primary">
+                    {stat.value}
+                  </p>
+                  <p className="font-body text-xs text-text-secondary">
+                    {stat.label}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="pt-2 pb-6 border-t border-border-gray/50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 py-6">
+
+            {/* Brand */}
+            <div className="col-span-2">
+              <div className="flex items-center gap-2 mb-1.5">
+                <BiteLogo size={22} />
+                <span className="font-heading text-sm font-bold text-text-primary">
+                  BringMy<span className="text-bite-orange">Bite</span>
+                </span>
+              </div>
+              <p className="font-body text-[11px] text-text-secondary mb-2">
+                Made for cravings.
+                <br />
+                Built around bites.
+              </p>
+              <div className="flex gap-2.5">
+                {["📷", "📘", "🐦", "▶️"].map((icon, i) => (
+                  <span key={i} className="text-xs opacity-60">{icon}</span>
+                ))}
+              </div>
+            </div>
+
+            {[
+              { title: "Company", links: ["Our Story", "Careers", "Blog", "Press", "Contact Us"] },
+              { title: "For Bite Lovers", links: ["Search", "BiteMatch AI", "Offers", "Track Order", "Help Center"] },
+              { title: "For Partners", links: ["Partner With Us", "Bite Partner Login", "Delivery Partner"] },
+              { title: "Legal", links: ["Privacy Policy", "Terms & Conditions", "Refund Policy"] },
+            ].map((col) => (
+              <div key={col.title}>
+                <h4 className="font-heading text-xs font-bold text-text-primary mb-3">
+                  {col.title}
+                </h4>
+                <ul className="space-y-1">
+                  {col.links.map((link) => (
+                    <li key={link}>
+                      <a href="#" className="font-body text-[11px] text-text-secondary hover:text-bite-orange transition-all">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between pt-3 border-t border-border-gray/50">
+            <p className="font-body text-[10px] text-text-secondary">
+              © 2026 BringMyBite. All rights reserved.
+            </p>
+            <BiteLogo size={18} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
