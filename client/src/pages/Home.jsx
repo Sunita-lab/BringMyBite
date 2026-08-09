@@ -55,152 +55,158 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-bg-cream pb-10">
+      <div className="max-w-5xl mx-auto">
 
-      {/* Header */}
-      <div className="px-5 pt-8 pb-6"
-        style={{
-          background: "linear-gradient(135deg, #F97316 0%, #FDBA74 60%, #FFFBF7 100%)"
-        }}>
-
-        {/* Top Row */}
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <p className="font-body text-white/80 text-sm">
-              {getGreeting()} 👋
-            </p>
-            <h1 className="font-heading text-2xl font-bold text-white">
-              {user?.name?.split(" ")[0]}
-            </h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate("/cart")}
-              className="relative w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white hover:bg-white/30 transition-all"
-            >
-              🛒
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-tomato text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-            <button
-              onClick={logout}
-              className="text-white/80 font-body text-sm border border-white/30 rounded-full px-4 py-1.5 hover:bg-white/20 transition-all"
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-
-        <p className="font-body text-white/90 text-sm mb-4">
-          What are you craving today?
-        </p>
-
-        {/* Search Bar */}
-        <div className="relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-disabled text-lg">
-            🔍
-          </span>
-          <input
-            type="text"
-            placeholder="Search your next bite..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-11 pr-5 py-3.5 rounded-[999px] bg-white font-body text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-bite-orange/30 transition-all"
-            style={{ boxShadow: "0 4px 15px rgba(0,0,0,0.08)" }}
-          />
-        </div>
-      </div>
-
-      <div className="px-5">
-
-        {/* Categories */}
-        <div className="mt-6 mb-6">
-          <h2 className="font-heading text-lg font-bold text-text-primary mb-3">
-            Categories
-          </h2>
-          {categories.length === 0 ? (
-            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-              {["🍕 Pizza", "🍔 Burger", "🥗 Healthy", "🥟 Momos", "🍜 Ramen", "🍰 Dessert"].map((cat) => (
-                <button
-                  key={cat}
-                  className="flex-shrink-0 px-4 py-2 rounded-[999px] bg-white border border-border-gray font-body text-sm text-text-primary hover:border-bite-orange hover:text-bite-orange transition-all"
-                  style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.05)" }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-              {categories.map((cat) => (
-                <button
-                  key={cat._id}
-                  className="flex-shrink-0 px-4 py-2 rounded-[999px] bg-white border border-border-gray font-body text-sm text-text-primary hover:border-bite-orange hover:text-bite-orange transition-all"
-                  style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.05)" }}
-                >
-                  {cat.emoji} {cat.name}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Trending Bites */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-heading text-lg font-bold text-text-primary">
-              Trending Bites 🔥
-            </h2>
-            <button className="font-body text-bite-orange text-sm font-semibold">
-              See all
-            </button>
-          </div>
-
-          {trending.length === 0 ? (
-            <div className="text-center py-10">
-              <div className="text-4xl mb-2">🍕</div>
-              <p className="font-body text-text-secondary text-sm">
-                No bites yet. Let's add some!
+        {/* Header */}
+        <div
+          className="px-5 pt-8 pb-6 md:rounded-b-[32px]"
+          style={{
+            background:
+              "radial-gradient(circle at 15% 20%, #FDBA74 0%, transparent 50%), linear-gradient(135deg, #F97316 0%, #EA580C 100%)",
+          }}
+        >
+          {/* Top Row */}
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="font-body text-white/85 text-sm">
+                {getGreeting()} 👋
               </p>
+              <h1 className="font-heading text-2xl font-bold text-white">
+                {user?.name?.split(" ")[0]}
+              </h1>
             </div>
-          ) : (
-            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-              {trending.map((food) => (
-                <FoodCard key={food._id} food={food} />
-              ))}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => navigate("/cart")}
+                className="relative w-10 h-10 rounded-full flex items-center justify-center text-white hover:scale-105 transition-all"
+                style={{ background: "rgba(31,36,23,0.35)" }}
+              >
+                🛒
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-tomato text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+              <button
+                onClick={logout}
+                className="font-body text-sm text-white rounded-full px-4 py-1.5 hover:scale-105 transition-all"
+                style={{ background: "rgba(31,36,23,0.35)" }}
+              >
+                Logout
+              </button>
             </div>
-          )}
-        </div>
-
-        {/* Healthy Picks */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-heading text-lg font-bold text-text-primary">
-              Healthy Picks 💚
-            </h2>
-            <button className="font-body text-fresh-green text-sm font-semibold">
-              See all
-            </button>
           </div>
 
-          {healthy.length === 0 ? (
-            <div className="text-center py-10">
-              <div className="text-4xl mb-2">🥗</div>
-              <p className="font-body text-text-secondary text-sm">
-                No healthy bites yet!
-              </p>
-            </div>
-          ) : (
-            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-              {healthy.map((food) => (
-                <FoodCard key={food._id} food={food} />
-              ))}
-            </div>
-          )}
+          <p className="font-body text-white/90 text-sm mb-4">
+            What are you craving today?
+          </p>
+
+          {/* Search Bar */}
+          <div className="relative">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-disabled text-lg">
+              🔍
+            </span>
+            <input
+              type="text"
+              placeholder="Search your next bite..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-11 pr-5 py-3.5 rounded-[999px] bg-white font-body text-text-primary placeholder:text-text-disabled focus:outline-none focus:ring-2 focus:ring-bite-orange/30 transition-all"
+              style={{ boxShadow: "0 4px 15px rgba(0,0,0,0.08)" }}
+            />
+          </div>
         </div>
 
+        <div className="px-5">
+
+          {/* Categories */}
+          <div className="mt-6 mb-6">
+            <h2 className="font-heading text-lg font-bold text-text-primary mb-3">
+              Categories
+            </h2>
+            {categories.length === 0 ? (
+              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                {["🍕 Pizza", "🍔 Burger", "🥗 Healthy", "🥟 Momos", "🍜 Ramen", "🍰 Dessert"].map((cat) => (
+                  <button
+                    key={cat}
+                    className="flex-shrink-0 px-4 py-2 rounded-[999px] bg-white border border-border-gray font-body text-sm text-text-primary hover:border-bite-orange hover:text-bite-orange transition-all"
+                    style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.05)" }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                {categories.map((cat) => (
+                  <button
+                    key={cat._id}
+                    className="flex-shrink-0 px-4 py-2 rounded-[999px] bg-white border border-border-gray font-body text-sm text-text-primary hover:border-bite-orange hover:text-bite-orange transition-all"
+                    style={{ boxShadow: "0 4px 10px rgba(0,0,0,0.05)" }}
+                  >
+                    {cat.emoji} {cat.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Trending Bites */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-heading text-lg font-bold text-text-primary">
+                Trending Bites 🔥
+              </h2>
+              <button className="font-body text-bite-orange text-sm font-semibold">
+                See all
+              </button>
+            </div>
+
+            {trending.length === 0 ? (
+              <div className="text-center py-10">
+                <div className="text-4xl mb-2">🍕</div>
+                <p className="font-body text-text-secondary text-sm">
+                  No bites yet. Let's add some!
+                </p>
+              </div>
+            ) : (
+              <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                {trending.map((food) => (
+                  <FoodCard key={food._id} food={food} />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Healthy Picks */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-heading text-lg font-bold text-text-primary">
+                Healthy Picks 💚
+              </h2>
+              <button className="font-body text-fresh-green text-sm font-semibold">
+                See all
+              </button>
+            </div>
+
+            {healthy.length === 0 ? (
+              <div className="text-center py-10">
+                <div className="text-4xl mb-2">🥗</div>
+                <p className="font-body text-text-secondary text-sm">
+                  No healthy bites yet!
+                </p>
+              </div>
+            ) : (
+              <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                {healthy.map((food) => (
+                  <FoodCard key={food._id} food={food} />
+                ))}
+              </div>
+            )}
+          </div>
+
+        </div>
       </div>
     </div>
   );
@@ -213,7 +219,7 @@ function FoodCard({ food }) {
   return (
     <div
       onClick={() => navigate(`/food/${food._id}`)}
-      className="flex-shrink-0 w-48 rounded-[24px] bg-white overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-200"
+      className="flex-shrink-0 w-44 sm:w-48 rounded-[24px] bg-white overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-200"
       style={{ boxShadow: "0 12px 30px rgba(0,0,0,0.08)" }}
     >
       {/* Image */}
